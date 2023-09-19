@@ -1,0 +1,20 @@
+generator client {
+  provider        = "prisma-client-js"
+  previewFeatures = ["multiSchema"]
+}
+
+datasource db {
+  provider = "sqlserver"
+  url      = env("DATABASE_URL")
+  schemas  = ["library_schema"]
+}
+
+model books {
+  id          Int    @id(map: "PK__books__3213E83FE4D0D8CC") @default(autoincrement())
+  title       String @db.VarChar(45)
+  description String @db.VarChar(255)
+  cover       String @db.VarChar(45)
+  price       Int?
+
+  @@schema("library_schema")
+}
